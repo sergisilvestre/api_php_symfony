@@ -67,20 +67,20 @@ services:
   # -----------------------------
   # WORKER QUEUE (SYMFONY MESSENGER)
   # -----------------------------
-  queue:
-    build: .
-    container_name: api-php-symfony-queue
-    command: php bin/console messenger:consume async -vv --time-limit=3600
-    restart: unless-stopped
-    networks:
-      - app
-    volumes:
-      - .:/var/www
-      - vendor:/var/www/vendor
-    working_dir: /var/www
-    depends_on:
-      db:
-        condition: service_healthy
+  # queue:
+  #   build: .
+  #   container_name: api-php-symfony-queue
+  #   command: php bin/console messenger:consume async -vv --time-limit=3600
+  #   restart: unless-stopped
+  #   networks:
+  #     - app
+  #   volumes:
+  #     - .:/var/www
+  #     - vendor:/var/www/vendor
+  #   working_dir: /var/www
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
 
   # -----------------------------
   # SCHEDULER (SAFE LOOP - REPLACE WITH CRON IF NEEDED)
