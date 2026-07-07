@@ -1,4 +1,5 @@
 <?php
+
 namespace App\User\Infrastructure\Repository;
 
 use App\User\Domain\Entity\User;
@@ -11,8 +12,7 @@ final class UserRepository implements UserRepositoryInterface
 {
     public function __construct(
         private EntityManagerInterface $entityManager
-    ) {
-    }
+    ) {}
 
     public function all(): array
     {
@@ -57,5 +57,20 @@ final class UserRepository implements UserRepositoryInterface
     {
         $this->entityManager->remove($entity);
         $this->entityManager->flush();
+    }
+
+    public function findByEmail(string $email): ?User
+    {
+        $record = $this->entityManager
+            ->getRepository(UserRecord::class)
+            ->findOneBy([
+                'email' => $email,
+            ]);
+
+        if (!$record) {
+            return null;
+        }
+
+        return UserMapper::toDomain($record);
     }
 }

@@ -2,18 +2,15 @@
 
 namespace App\User\Domain\Entity;
 
-
 final class User
 {
-    /**
-     * @param string[] $verifications
-     */
     public function __construct(
         private ?int $id,
         private string $name,
         private string $email,
         private string $password
-    ) {}
+    ) {
+    }
 
     public function id(): ?int
     {
@@ -45,7 +42,7 @@ final class User
         $this->email = $email;
     }
 
-     public function changePassword(string $password): void
+    public function changePassword(string $password): void
     {
         $this->password = $password;
     }

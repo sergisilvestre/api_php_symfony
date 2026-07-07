@@ -2,9 +2,14 @@ parameters:
 
 services:
     _defaults:
-        autowire: true     
+        autowire: true
         autoconfigure: true
+
     App\:
         resource: '../src/'
+
     App\User\Domain\Repository\UserRepositoryInterface:
         alias: App\User\Infrastructure\Repository\UserRepository
+
+    App\Auth\Domain\Repository\AuthRepositoryInterface:
+        alias: App\Auth\Infrastructure\Security\AuthRepository

@@ -5,6 +5,9 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libxml2-dev \
     libonig-dev \
+    libsodium-dev \
+    libssl-dev \
+    openssl \
     zlib1g-dev \
     unzip \
     git \
@@ -20,7 +23,8 @@ RUN docker-php-ext-install -j$(nproc) \
     intl \
     bcmath \
     zip \
-    xml
+    xml \
+    sodium
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
@@ -38,9 +42,9 @@ COPY . .
 
 RUN composer dump-autoload -o
 
-RUN mkdir -p var/cache var/log \
- && chown -R www-data:www-data var \
- && chmod -R 775 var
+RUN mkdir -p var/cache var/log config/jwt \
+ && chown -R www-data:www-data var config/jwt \
+ && chmod -R 775 var config/jwt
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
