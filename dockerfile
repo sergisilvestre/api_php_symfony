@@ -29,10 +29,10 @@ WORKDIR /var/www
 COPY composer.json composer.lock ./
 
 RUN composer install \
-    --no-dev \
     --prefer-dist \
     --no-interaction \
-    --no-scripts
+    --no-scripts \
+    --dev
 
 COPY . .
 

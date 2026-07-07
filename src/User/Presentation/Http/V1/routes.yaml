@@ -1,0 +1,5 @@
+user:
+    resource:
+        path: ../src/User/Presentation/Http/V1/
+        namespace: App\User\Presentation\Http\V1
+    type: attribute
