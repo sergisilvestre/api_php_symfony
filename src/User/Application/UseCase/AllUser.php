@@ -11,8 +11,7 @@ final readonly class AllUser
     public function __construct(
         private UserRepositoryInterface $repository,
         private LoggerInterface $logger,
-    ) {
-    }
+    ) {}
 
     /**
      * @return UserDto[]
@@ -22,10 +21,10 @@ final readonly class AllUser
         $this->logger->info('Fetching all users');
 
         return array_map(
-            static fn ($user) => new UserDto(
-                id: $user->getId(),
-                name: $user->getName(),
-                email: $user->getEmail(),
+            static fn($user) => new UserDto(
+                id: $user->id(),
+                name: $user->name(),
+                email: $user->email(),
             ),
             $this->repository->all()
         );
