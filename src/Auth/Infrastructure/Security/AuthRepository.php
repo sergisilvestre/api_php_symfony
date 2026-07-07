@@ -4,7 +4,8 @@ namespace App\Auth\Infrastructure\Security;
 
 use App\Auth\Application\Dto\AuthDto;
 use App\Auth\Domain\Repository\AuthRepositoryInterface;
-use App\User\Domain\Entity\User;
+// use App\User\Domain\Entity\User;
+use App\User\Infrastructure\Doctrine\Entity\UserRecord as User;
 use Symfony\Bundle\SecurityBundle\Security;
 
 class AuthRepository implements AuthRepositoryInterface

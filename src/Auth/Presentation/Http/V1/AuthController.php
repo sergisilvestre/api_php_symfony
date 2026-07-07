@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Auth\Application\UseCase\UserAuthenticated;
 use App\Auth\Domain\Repository\TokenGenerator;
+use App\Shared\Infrastructure\Helpers\TimeHelper;
 use App\User\Application\UseCase\LoginUser;
-use Shared\Infrastructure\Helpers\TimeHelper;
 
 #[Route('/api/v1/auth', name: 'auth.')]
 class AuthController extends AbstractController
@@ -42,8 +42,6 @@ class AuthController extends AbstractController
 
         $userInfo = $this->loginUser->execute($credentials);
 
-        dd($credentials, $userInfo);
-        
         if (empty($userInfo['token'])) {
             return ApiResponseHelper::error('Unauthorized', 401);
         }
